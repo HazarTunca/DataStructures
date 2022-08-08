@@ -20,17 +20,17 @@
 
     public class LinkedList<T>
     {
-        int count;
+        int length;
         LinkedListNode<T> head;
         LinkedListNode<T> tail;
 
-        public int Count => count;
+        public int Length => length;
         public LinkedListNode<T> Head => head;
         public LinkedListNode<T> Tail => tail;
 
         public LinkedListNode<T> AddLast(T item)
         {
-            count++;
+            length++;
 
             LinkedListNode<T> newNode = new LinkedListNode<T>(item);
             if (tail == null)
@@ -48,7 +48,7 @@
 
         public LinkedListNode<T> AddFirst(T item)
         {
-            count++;
+            length++;
             
             LinkedListNode<T> newNode = new LinkedListNode<T>(item);
 
@@ -66,7 +66,7 @@
 
         public LinkedListNode<T> AddAfter(LinkedListNode<T> previousNode, T item)
         {
-            count++;
+            length++;
             LinkedListNode<T> newNode = new LinkedListNode<T>(item);
 
             newNode.next = previousNode.next;
@@ -84,7 +84,7 @@
 
         public LinkedListNode<T> AddBefore(LinkedListNode<T> nextNode, T item)
         {
-            count++;
+            length++;
             LinkedListNode<T> newNode = new LinkedListNode<T>(item);
 
             newNode.next = nextNode;
@@ -102,7 +102,7 @@
 
         public void Remove(LinkedListNode<T> node)
         {
-            count--;
+            length--;
             
             LinkedListNode<T> previousNode = Equals(node, head) ? null : node.previous;
             LinkedListNode<T> nextNode = Equals(node, tail) ? null : node.next;
@@ -116,21 +116,21 @@
         
         public void RemoveLast()
         {
-            count--;
+            length--;
             tail = tail.previous;
             tail.next = null;
         }
 
         public void RemoveFirst()
         {
-            count--;
+            length--;
             head = head.next;
             head.previous = null;
         }
 
         public void RemoveAfter(LinkedListNode<T> previousNode)
         {
-            count--;
+            length--;
             LinkedListNode<T> nextNode = previousNode.next;
             if (Equals(nextNode, tail))
             {
@@ -145,7 +145,7 @@
 
         public void RemoveBefore(LinkedListNode<T> nextNode)
         {
-            count--;
+            length--;
             LinkedListNode<T> previousNode = nextNode.previous;
             if (Equals(previousNode, head))
             {
@@ -186,6 +186,13 @@
             }
 
             return false;
+        }
+
+        public void Clear()
+        {
+            head = null;
+            tail = null;
+            length = 0;
         }
     }
 }
